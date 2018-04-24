@@ -11,7 +11,8 @@
         <tr v-for= "(animal, key) in animals" :key="key">
           <td>{{ animal.species }}</td>
           <td>{{ animal.name }}</td>
-          <td>{{ animal.birth }}</td>
+          <td v-if="animal.birth === ''">Nepoznat</td>
+          <td v-else>{{ animal.birth }}</td>
         </tr>
       </tbody>
     </table>
@@ -28,8 +29,8 @@ export default {
     { species: 'macka', name:'kitty', birth:'1.2.2017.'},
     { species: 'papagaj', name:'koki', birth:'1.3.2017.'},
     { species: 'zmija', name:'paja', birth:'1.4.2017.'},
-    { species: 'zec', name:'flafi', birth:'1.5.2017.'}
-
+    { species: 'zec', name:'flafi', birth:''}
+    
     ]}}
 }
 </script>
