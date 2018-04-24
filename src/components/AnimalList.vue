@@ -8,13 +8,14 @@
       <input v-model="newAnimal.name" type='text' placeholder="Name"/>
       <label>Day of birth</label>
       <input v-model="newAnimal.birth" type="text" placeholder="day of birth"/>
-      <button type='submit'>Submit</button>
+      <button type='submit'>Add Animal</button>
     </form>
 
     <table>
       <thead>
         <th>Species</th>
         <th>Name</th>
+        <th>Sector</th>
         <th>Day of Birth</th>
         <th>&nbsp;</th>
       </thead>
@@ -22,6 +23,7 @@
         <tr v-for= "(animal, key) in animals" :key="key">
           <td>{{ animal.species }}</td>
           <td>{{ animal.name }}</td>
+          <td>{{ animal.sector.name }}</td>
           <td v-if="animal.birth === ''">Nepoznat</td>
           <td v-else>{{ animal.birth }}</td>
           <td>
@@ -38,15 +40,23 @@
 </template>
 
 <script>
+const sectors = [
+  { name:'Predators', surface: 'kage' },
+  { name: 'WaterAnimals', surface: 'water' },
+  { name: 'Fawl', surface: 'kage' }
+];
+
 export default {
   name: 'AnimalList',
   data() {
-    return { animals:[
-    { species: 'pas', name:'rex', birth:'1.1.2017.'},
-    { species: 'macka', name:'kitty', birth:'1.2.2017.'},
-    { species: 'papagaj', name:'koki', birth:'1.3.2017.'},
-    { species: 'zmija', name:'paja', birth:'1.4.2017.'},
-    { species: 'zec', name:'flafi', birth:''}
+    return {
+      sectors: sectors,
+      animals:[
+    { species: 'pas', name:'rex', birth:'1.1.2017.',sector:sectors[1]},
+    { species: 'macka', name:'kitty', birth:'1.2.2017.',sector:sectors[0]},
+    { species: 'papagaj', name:'koki', birth:'1.3.2017.',sector:sectors[0]},
+    { species: 'zmija', name:'paja', birth:'1.4.2017.',sector:sectors[0]},
+    { species: 'zec', name:'flafi', birth:'',sector:sectors[1]}
     ],
     newAnimal: {
         species: '',
