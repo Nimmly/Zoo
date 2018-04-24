@@ -35,6 +35,22 @@
         </tr>
       </tbody>
     </table>
+
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Surface</th>
+      </thead>
+      <tbody>
+        <tr v-for = "(sector, key) in sectors" :key="key">
+        <td>{{ sector.name }}</td>
+        <td> {{ sector.surface }}</td>
+        <td>
+          <button @click="see(sector)">See list</button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
     
   </div>
 </template>
@@ -76,6 +92,14 @@ export default {
         var arr = this.animals.splice(this.animals.indexOf(animal), 1)
         this.animals.unshift(arr[0])
       },
+      see(sector){
+        var indexAnimal=[]
+        this.animals.forEach(animal => {
+          if(animal.sector.name === sector.name)
+            indexAnimal.push(animal.name)
+      })
+      alert(indexAnimal);
+      }
      
     }
 }
