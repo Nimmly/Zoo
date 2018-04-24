@@ -1,6 +1,16 @@
 <template>
   <div>
-    
+
+    <form @submit.prevent="addAnimal">
+      <label>Species</label>
+      <input v-model="newAnimal.species" type='text' placeholder="species"/>
+      <label>Name</label>
+      <input v-model="newAnimal.name" type='text' placeholder="Name"/>
+      <label>Day of birth</label>
+      <input v-model="newAnimal.birth" type="text" placeholder="day of birth"/>
+      <button type='submit'>Submit</button>
+    </form>
+
     <table>
       <thead>
         <th>Species</th>
@@ -37,16 +47,26 @@ export default {
     { species: 'papagaj', name:'koki', birth:'1.3.2017.'},
     { species: 'zmija', name:'paja', birth:'1.4.2017.'},
     { species: 'zec', name:'flafi', birth:''}
-    
-    ]}},
+    ],
+    newAnimal: {
+        species: '',
+        name: '',
+        birth: ''
+      }
+      }},
     methods:{
+       addAnimal(){
+        this.animals.push(this.newAnimal),
+        this.newAnimal= {}
+      },
       removeAnimal(animal) {
         this.animals.splice(this.animals.indexOf(animal), 1)
       },
       moveToTop(animal){
         var arr = this.animals.splice(this.animals.indexOf(animal), 1)
         this.animals.unshift(arr[0])
-      }
+      },
+     
     }
 }
 </script>
