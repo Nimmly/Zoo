@@ -17,6 +17,9 @@
           <td>
             <button @click="removeAnimal(animal)">Remove</button>
           </td>
+          <td>
+            <button @click="moveToTop(animal)">Move to the top</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -38,7 +41,11 @@ export default {
     ]}},
     methods:{
       removeAnimal(animal) {
-        this.animals.splice(this.animals.indexOf('animal'), 1)
+        this.animals.splice(this.animals.indexOf(animal), 1)
+      },
+      moveToTop(animal){
+        var arr = this.animals.splice(this.animals.indexOf(animal), 1)
+        this.animals.unshift(arr[0])
       }
     }
 }
